@@ -9,11 +9,22 @@ function greetUser(username) {
 // Call the greetUser function
 greetUser("Alice");
 
-// New function to perform addition
+// Import readline module for user input
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// New function to perform addition with user input
 function addNumbers(num1, num2) {
     return num1 + num2;
 }
 
-// Call the addNumbers function and display the result
-const result = addNumbers(5, 7);
-console.log(`The result of adding 5 and 7 is: ${result}`);
+// Prompt user for input and call the addNumbers function
+readline.question('Enter the first number: ', (num1) => {
+    readline.question('Enter the second number: ', (num2) => {
+        const result = addNumbers(parseInt(num1), parseInt(num2));
+        console.log(`The result of adding ${num1} and ${num2} is: ${result}`);
+        readline.close();
+    });
+});
